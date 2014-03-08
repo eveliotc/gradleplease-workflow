@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>info.evelio.gradleplease</string>
+	<key>connections</key>
+	<dict>
+		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CC5902BC-D8FC-459E-8C5B-F7E914F4478F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>86BF8F7E-EC37-4F1E-B24F-0D7CDE9C034E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CC5902BC-D8FC-459E-8C5B-F7E914F4478F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>CC5902BC-D8FC-459E-8C5B-F7E914F4478F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9EED0D96-8713-4966-9478-77DFCB8A272D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Evelio Tarazona Caceres</string>
+	<key>description</key>
+	<string>Search Maven Central for a gradle line dependency</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Gradle Please</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>keyword</key>
+				<string>gp</string>
+				<key>runningsubtext</key>
+				<string>Finding your dep...</string>
+				<key>script</key>
+				<string>python gp.py {query}
+</string>
+				<key>subtext</key>
+				<string>Search maven central for a gradle dependency</string>
+				<key>title</key>
+				<string>Gradle Please</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>63F60794-BB56-4415-9372-BAF974C3A7E1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>9EED0D96-8713-4966-9478-77DFCB8A272D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>script</key>
+				<string>python process.py "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CC5902BC-D8FC-459E-8C5B-F7E914F4478F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>keyword</key>
+				<string>dep</string>
+				<key>runningsubtext</key>
+				<string>Finding your dep...</string>
+				<key>script</key>
+				<string>python gp.py {query}</string>
+				<key>subtext</key>
+				<string>Search maven central for a gradle dependency</string>
+				<key>title</key>
+				<string>Gradle Please</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>86BF8F7E-EC37-4F1E-B24F-0D7CDE9C034E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Name from http://gradleplease.appspot.com/</string>
+	<key>uidata</key>
+	<dict>
+		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>
+		<dict>
+			<key>ypos</key>
+			<real>50</real>
+		</dict>
+		<key>86BF8F7E-EC37-4F1E-B24F-0D7CDE9C034E</key>
+		<dict>
+			<key>ypos</key>
+			<real>260</real>
+		</dict>
+		<key>9EED0D96-8713-4966-9478-77DFCB8A272D</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+		<key>CC5902BC-D8FC-459E-8C5B-F7E914F4478F</key>
+		<dict>
+			<key>ypos</key>
+			<real>230</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>evel.io</string>
+</dict>
+</plist>
