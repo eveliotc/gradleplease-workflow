@@ -7,6 +7,7 @@ from alfred import Item
 import urllib, urllib2 # sigh not using requests to minimize deps and simplify this little scrypt
 import json
 from common import empty_result, join_query, json_to_obj, xml_result
+from local import local_search
 
 CONFIGURATIONS = ('compile', 'provided', 'runtime', 'instrumentTest', 'androidTest', 'testCompile',)
 DEFAULT_CONFIGURATION = 'compile'
@@ -31,16 +32,28 @@ else:
 if (len(query) == 0):
     empty_result()
 
+# TODO async this
+try:
+    localDocs = local_search(query)
+    # TODO refactor doc to Item code below so we can send partial results here e.g. xml_result(results, False)
+except: # pokemon catch em all
+    localDocs = [] # TODO do something about it like let user know to define $ANDROID_HOME, install local repo etc.
+
+# TODO move this somewhere else
+# TODO async this
 url = u'http://search.maven.org/solrsearch/select?wt=json&q=%s' % urllib.quote_plus(query)
 
 json = json.load(urllib2.urlopen(url))
-root = json_to_obj(json);
-
+root = json_to_obj(json)
 docs = root.response.docs
 sortedDocs = sorted(docs, key=lambda doc: doc['latestVersion'], reverse=True)
 
+fullDocs = []
+fullDocs.extend(localDocs)
+fullDocs.extend(sortedDocs)
+
 results = []
-for doc in sortedDocs:
+for doc in fullDocs:
     doc = json_to_obj(doc)
     packaging = doc.p
     id = doc.id

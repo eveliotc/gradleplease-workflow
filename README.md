@@ -13,6 +13,8 @@ Well if you answered yes! yes! yes! this workflow is for you!
 
 Roadmap
 =======
-- Add support for local repos like Google's and Android support
+- Allow overrides/fuzzy search to provide better results (e.g. gcm -> play services, play services -> play-services, etc.)
+- Performance improvements (local and central to use cache & async)
+- TODOs
 - Fix bugs
 - idunnolol
