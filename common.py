@@ -3,6 +3,7 @@ __author__ = 'eveliotc'
 __license__ = 'See LICENSE'
 
 import alfred
+from alfred import Item
 import sys
 from subprocess import Popen, PIPE
 
@@ -15,15 +16,24 @@ def json_to_obj(x):
 def join_query(dic):
     return ' '.join(dic)
 
-def le_result(r):
+def le_result(r, exit = True):
     alfred.write(r)
-    sys.exit()
+    if exit:
+        sys.exit()
 
-def xml_result(r):
-    le_result(alfred.xml(r))
+def xml_result(r, exit = True):
+    if len(r) < 1:
+        empty_result(exit)
+    else:
+        le_result(alfred.xml(r), exit)
 
-def empty_result():
-    xml_result([])
+def empty_result(exit = True):
+    empty = Item(
+            attributes={'uid': alfred.uid('empty'), 'arg': ''},
+            title='Gradle Please',
+            subtitle=u':( Nothing found.',
+            icon=u'icon.png')
+    xml_result([empty], exit)
 
 def apple_script(scpt, args=[]):
      p = Popen(['osascript', '-'] + args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
