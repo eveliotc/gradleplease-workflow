@@ -18,3 +18,16 @@ Roadmap
 - TODOs
 - Fix bugs
 - idunnolol
+
+Troubleshooting
+===============
+#####I don't get any results for `support-v4` or `play-services`.
+  - Make sure you have `ANDROID_HOME` enviroment variable defined pointing to your android sdk, e.g. execute `echo $ANDROID_HOME` should give you a similar output to<br/>![http://i.imgur.com/dGcRde2.png](http://i.imgur.com/dGcRde2.png)
+  - Make sure you have Google and support local repositories installed<br/>![http://i.imgur.com/42fhvYR.png](http://i.imgur.com/42fhvYR.png)
+  - Gradle Please uses `ANDROID_HOME` to figure out your local artifacts
+  - Finally if the above is in place and somehow workflow is still unable to resolve it you could edit it and add it manually e.g.
+```
+  export ANDROID_HOME="YOUR_PATH_HERE"
+  python gp.py {query}
+```
+![http://i.imgur.com/gcCvSqt.png](http://i.imgur.com/gcCvSqt.png)
