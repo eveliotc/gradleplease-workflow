@@ -4,6 +4,7 @@ __license__ = 'See LICENSE'
 
 import sys
 from os import walk, environ, path
+from distutils.version import LooseVersion
 
 try:
     import xml.etree.cElementTree as ET
@@ -55,7 +56,7 @@ def local_search(query):
                     doc = to_pom(root)
                     docs.append(doc)
 
-    return sorted(docs, key=lambda doc: doc.latestVersion, reverse=True)
+    return sorted(docs, key=lambda doc: LooseVersion(doc.latestVersion), reverse=True)
 
 def main(args):
     print local_search(' '.join(args))

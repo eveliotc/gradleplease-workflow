@@ -8,6 +8,7 @@ import urllib, urllib2 # sigh not using requests to minimize deps and simplify t
 import json
 from common import empty_result, join_query, json_to_obj, xml_result
 from local import local_search
+from distutils.version import LooseVersion
 
 CONFIGURATIONS = ('compile', 'provided', 'runtime', 'instrumentTest', 'androidTest', 'testCompile',)
 DEFAULT_CONFIGURATION = 'compile'
@@ -46,7 +47,7 @@ url = u'http://search.maven.org/solrsearch/select?wt=json&q=%s' % urllib.quote_p
 json = json.load(urllib2.urlopen(url))
 root = json_to_obj(json)
 docs = root.response.docs
-sortedDocs = sorted(docs, key=lambda doc: doc['latestVersion'], reverse=True)
+sortedDocs = sorted(docs, key=lambda doc: LooseVersion(doc['latestVersion']), reverse=True)
 
 fullDocs = []
 fullDocs.extend(localDocs)
