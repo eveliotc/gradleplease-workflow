@@ -7,6 +7,7 @@ from alfred import Item
 from common import empty_result, join_query, json_to_obj, xml_result
 from local import local_search
 from mavencentral import maven_central_search
+from jcenter import jcenter_search
 
 
 CONFIGURATIONS = ('compile', 'provided', 'runtime', 'instrumentTest', 'androidTest', 'testCompile',)
@@ -42,10 +43,13 @@ except: # pokemon catch em all
 # TODO async this
 (mavenCentralDocs, suggestions) = maven_central_search(query)
 
+# TODO async this
+jcenterDocs = jcenter_search(query)
 
 fullDocs = []
 fullDocs.extend(localDocs)
 fullDocs.extend(mavenCentralDocs)
+fullDocs.extend(jcenterDocs)
 
 results = []
 for doc in fullDocs:
