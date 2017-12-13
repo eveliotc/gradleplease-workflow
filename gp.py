@@ -58,10 +58,11 @@ for doc in fullDocs:
         # In case of compiler dependency use provided
         lineConfiguration = u'provided' if 'compiler' in id else configuration
         depLine = u"%s '%s:%s%s'" % (lineConfiguration, id, doc.latestVersion, atPackaging)
+        source = doc.source if hasattr(doc, 'source') and len(doc.source) > 0 else 'Maven Central'
         item = Item(
             attributes={'uid': alfred.uid(id), 'arg': depLine},
             title=doc.a,
-            subtitle=u'Paste %s' % depLine,
+            subtitle=u'Paste (from %s): %s' % (source, depLine),
             icon=u'icon.png'
         )
         results.append(item)
