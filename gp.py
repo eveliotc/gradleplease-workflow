@@ -4,10 +4,10 @@ __license__ = 'See LICENSE'
 
 import alfred
 from alfred import Item
-import urllib, urllib2 # sigh not using requests to minimize deps and simplify this little scrypt
-import json
 from common import empty_result, join_query, json_to_obj, xml_result
 from local import local_search
+from mavencentral import maven_central_search
+
 
 CONFIGURATIONS = ('compile', 'provided', 'runtime', 'instrumentTest', 'androidTest', 'testCompile',)
 DEFAULT_CONFIGURATION = 'compile'
@@ -39,18 +39,13 @@ try:
 except: # pokemon catch em all
     localDocs = [] # TODO do something about it like let user know to define $ANDROID_HOME, install local repo etc.
 
-# TODO move this somewhere else
 # TODO async this
-url = u'http://search.maven.org/solrsearch/select?wt=json&q=%s' % urllib.quote_plus(query)
+(mavenCentralDocs, suggestions) = maven_central_search(query)
 
-json = json.load(urllib2.urlopen(url))
-root = json_to_obj(json)
-docs = root.response.docs
-sortedDocs = sorted(docs, key=lambda doc: doc['latestVersion'], reverse=True)
 
 fullDocs = []
 fullDocs.extend(localDocs)
-fullDocs.extend(sortedDocs)
+fullDocs.extend(mavenCentralDocs)
 
 results = []
 for doc in fullDocs:
@@ -70,8 +65,6 @@ for doc in fullDocs:
             icon=u'icon.png'
         )
         results.append(item)
-
-suggestions = root.spellcheck.suggestions
 
 for suggestion in suggestions:
     if isinstance(suggestion, dict):
