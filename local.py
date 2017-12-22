@@ -4,26 +4,12 @@ __license__ = 'See LICENSE'
 
 import sys
 from os import walk, environ, path
+from common import Pom
 
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
     import xml.etree.ElementTree as ET
-
-# TODO refactor gp.py to use this instead of dynamic obj
-class Pom(object):
-    a = ''
-    g = ''
-    p = ''
-    latestVersion = ''
-
-    @property
-    def id(self):
-        return self.g + ':' + self.a
-
-    def __repr__(self):
-        #notjson #justdebugginthings
-        return '{id:%s a:%s g:%s p:%s v:%s}' % (self.id, self.a, self.g, self.p, self.latestVersion)
 
 def findtext(element, tag, alt='', ns='http://maven.apache.org/POM/4.0.0'):
     fulltag = str(ET.QName(ns, tag))
@@ -35,6 +21,7 @@ def to_pom(project):
     pom.g = findtext(project, 'groupId')
     pom.p = findtext(project, 'packaging', 'jar')
     pom.latestVersion = findtext(project, 'version')
+    pom.source = 'local'
     return pom
 
 def local_search(query):

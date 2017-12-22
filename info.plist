@@ -43,7 +43,7 @@
 	<key>createdby</key>
 	<string>Evelio Tarazona Caceres</string>
 	<key>description</key>
-	<string>Search Maven Central for a gradle line dependency</string>
+	<string>Search Maven Central and jcenter for a gradle line dependency</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -65,7 +65,7 @@
 				<string>python gp.py {query}
 </string>
 				<key>subtext</key>
-				<string>Search maven central for a gradle dependency</string>
+				<string>Search Maven Central and jcenter for a gradle dependency</string>
 				<key>title</key>
 				<string>Gradle Please</string>
 				<key>type</key>
@@ -126,7 +126,7 @@
 				<key>script</key>
 				<string>python gp.py {query}</string>
 				<key>subtext</key>
-				<string>Search maven central for a gradle dependency</string>
+				<string>Search Maven Central and jcenter for a gradle dependency</string>
 				<key>title</key>
 				<string>Gradle Please</string>
 				<key>type</key>

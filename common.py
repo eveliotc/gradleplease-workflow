@@ -42,3 +42,19 @@ def apple_script(scpt, args=[]):
 
 def tell_alfred(what):
     apple_script('tell application "Alfred 2" to search "%s"' % what)
+
+# TODO refactor gp.py to use this instead of dynamic obj
+class Pom(object):
+    a = ''
+    g = ''
+    p = ''
+    latestVersion = ''
+    source = ''
+
+    @property
+    def id(self):
+        return self.g + ':' + self.a
+
+    def __repr__(self):
+        #notjson #justdebugginthings
+        return '{id:%s a:%s g:%s p:%s v:%s}' % (self.id, self.a, self.g, self.p, self.latestVersion)
